@@ -77,6 +77,7 @@
     
     UGStoryCardItem *storyCardAtRow = [[cardManager cards] objectAtIndex: [indexPath row]];
     [cell setStoryCard:storyCardAtRow];
+    [cell setDelegate:self];
     
     return cell;
 }
@@ -96,6 +97,25 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [UGStoryCardTableViewCell heightForCellWithStoryCard:[[cardManager cards] objectAtIndex:indexPath.row]];
+}
+
+#pragma mark -
+#pragma mark TITableView
+
+- (void)tableView:(UITableView *)tableView didSwipeCellAtIndexPath:(NSIndexPath *)indexPath {
+	[super tableView:tableView didSwipeCellAtIndexPath:indexPath];
+}
+
+
+- (void)cellUpvoteWasTapped:(UGStoryCardTableViewCell *)cell {
+	
+	UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Button from back view"
+														 message:@"You tapped the upvote button"
+														delegate:nil cancelButtonTitle:@"Okay..."
+											   otherButtonTitles:nil];
+	[alertView show];
+	
+	[self hideVisibleBackView:YES];
 }
 @end
 

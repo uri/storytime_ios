@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TISwipeableTableView.h"
+#import "UGStoryCardTableViewCell.h"
 @class UGStoryCardManager;
 @class UGStoryCardItem;
 
-@interface UGStoryCardViewController : UITableViewController
+@interface UGStoryCardViewController : TISwipeableTableViewController <UGStoryCardTableViewCellDelegate>
 {
     UGStoryCardManager *cardManager;
 }

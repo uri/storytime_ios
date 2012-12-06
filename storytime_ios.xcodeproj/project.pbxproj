@@ -26,7 +26,7 @@
 		609811701664781C00F9FE0D /* UGStoryCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6098116F1664781C00F9FE0D /* UGStoryCardViewController.m */; };
 		609811741664788300F9FE0D /* UGStoryCardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 609811731664788300F9FE0D /* UGStoryCardManager.m */; };
 		60981177166478BF00F9FE0D /* UGLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60981176166478BF00F9FE0D /* UGLoginManager.m */; };
-		60AA01C41670FF9C00433575 /* TISwipeableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AA01C31670FF9C00433575 /* TISwipeableTableView.m */; };
+		60AA01C41670FF9C00433575 /* TISwipeableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AA01C31670FF9C00433575 /* TISwipeableTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CB9E864264EC4ED7A0A11A31 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B8FD16BC45429DBB4EB8FD /* libPods.a */; };
 /* End PBXBuildFile section */
 
