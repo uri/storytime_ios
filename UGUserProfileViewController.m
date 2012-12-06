@@ -7,6 +7,8 @@
 //
 
 #import "UGUserProfileViewController.h"
+#import "UGStoryTimeRestClient.h"
+#import "UGStoryCardViewController.h"
 
 @interface UGUserProfileViewController ()
 
@@ -18,17 +20,34 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [_recentStories setDelegate:self];
+        _topStories = [[NSMutableArray alloc ] init];
     }
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_usernameLabel setText:_username];
-    [_upvoteScoreLabel setText:_upvoteScore];
-    [_downvoteScoreLabel setText:_downvoteScore];
+    NSString *path = [NSString stringWithFormat:@"/users/%@.json", _username];
+    [[UGStoryTimeRestClient sharedClient] getAPIFor:path withParams:@{} withHTTPMethodType:@"get" withSuccessBlock:^(id data) {
+        // Somethign
+        NSString* up = [[[data objectForKey:@"user"] objectForKey:@"upvotes"] stringValue];
+        NSString* down = [[[data objectForKey:@"user"] objectForKey:@"downvotes"] stringValue];
+        
+        [_upvoteScoreLabel setText:up];
+        [_downvoteScoreLabel setText:down];
+        
+        [_topStories removeAllObjects];
+        
+        for (id st in [[data objectForKey:@"user"] objectForKey:@"story_cards"]) {
+            // Do stuff
+            id card = [st objectForKey:@"story_card"];
+            [_topStories addObject: card];
+        }
+        [[self recentStories] reloadData];
+        [[self view] setNeedsDisplay];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,14 +65,30 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    [[cell textLabel] setText:@"Test"];
+    
+    NSString* text = [[_topStories objectAtIndex: [indexPath row]] objectForKey:@"content"];
+    
+    [[cell textLabel] setText:text];
     
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    NSLog(@"The count, %d", [_topStories count]);
+    return [_topStories count];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UGStoryCardItem* rootCard = [[UGStoryCardItem alloc] init];
+    [rootCard setCardID: [[_topStories objectAtIndex:[indexPath row]] objectForKey:@"id"]];
+    UGStoryCardViewController* sc = [[UGStoryCardViewController alloc] initWithRootCard:rootCard];
+    
+    [UIView beginAnimations:@"animations" context:nil];
+    [[self navigationController] pushViewController:sc animated:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.navigationController.view cache:NO];
+    [UIView commitAnimations];
 }
 
 

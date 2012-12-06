@@ -131,10 +131,7 @@
 - (void)cellProfileWasTapped:(UGStoryCardTableViewCell *)cell {
 	
     UGUserProfileViewController* profile = [[UGUserProfileViewController alloc] init];
-
     [profile setUsername: [[cell storyCard] author]];
-    [profile setUpvoteScore:[[[cell storyCard] upvotes] stringValue]];
-    [profile setDownvoteScore:[[[cell storyCard] downvotes] stringValue]];
     
     [UIView beginAnimations:@"animation" context:nil];
 	[self.navigationController pushViewController:profile animated:NO];

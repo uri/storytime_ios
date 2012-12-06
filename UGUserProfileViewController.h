@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UGUserProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    NSMutableArray* _topStories;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *recentStories;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
