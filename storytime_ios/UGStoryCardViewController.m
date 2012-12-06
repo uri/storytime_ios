@@ -12,6 +12,7 @@
 #import "UGStoryCardItem.h"
 #import "UGStoryCardTableViewCell.h"
 #import "UGUserProfileViewController.h"
+#import "UGStoryTimeRestClient.h"
 
 @interface UGStoryCardViewController ()
 
@@ -109,23 +110,20 @@
 
 
 - (void)cellUpvoteWasTapped:(UGStoryCardTableViewCell *)cell {
-	
-	UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Button from back view"
-														 message:@"You tapped the upvote button"
-														delegate:nil cancelButtonTitle:@"Okay..."
-											   otherButtonTitles:nil];
-	[alertView show];
+    NSString *path  = [NSString stringWithFormat:@"/story_cards/%@/vote/1.json", [[[cell storyCard] cardID] stringValue]];
+    NSLog(@"This is the path\n%@", path);
+    [[UGStoryTimeRestClient sharedClient] getAPIFor:path withParams:@{} withHTTPMethodType:@"get" withSuccessBlock:^(id jsonResponse) {
+        [self reloadRequest];
+    }];
 	
 	[self hideVisibleBackView:YES];
 }
 
 - (void)cellDownvoteWasTapped:(UGStoryCardTableViewCell *)cell {
-	
-	UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Button from back view"
-														 message:@"You tapped the downvote"
-														delegate:nil cancelButtonTitle:@"Okay..."
-											   otherButtonTitles:nil];
-	[alertView show];
+    NSString *path  = [NSString stringWithFormat:@"/story_cards/%@/vote/-1.json", [[[cell storyCard] cardID] stringValue]];
+    [[UGStoryTimeRestClient sharedClient] getAPIFor:path withParams:@{} withHTTPMethodType:@"get" withSuccessBlock:^(id jsonResponse) {
+        [self reloadRequest];
+    }];
 	
 	[self hideVisibleBackView:YES];
 }
