@@ -15,8 +15,10 @@
 
 -(void) cellUpvoteWasTapped:(UGStoryCardTableViewCell*) cell;
 -(void) cellDownvoteWasTapped:(UGStoryCardTableViewCell*) cell;
-
+-(void) cellProfileWasTapped:(UGStoryCardTableViewCell*) cell;
 @end
+
+
 
 @interface UGStoryCardTableViewCell : TISwipeableTableViewCell
 {

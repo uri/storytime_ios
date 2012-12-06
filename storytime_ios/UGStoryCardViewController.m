@@ -11,6 +11,7 @@
 #import "UGStoryCardManager.h"
 #import "UGStoryCardItem.h"
 #import "UGStoryCardTableViewCell.h"
+#import "UGUserProfileViewController.h"
 
 @interface UGStoryCardViewController ()
 
@@ -115,6 +116,33 @@
 											   otherButtonTitles:nil];
 	[alertView show];
 	
+	[self hideVisibleBackView:YES];
+}
+
+- (void)cellDownvoteWasTapped:(UGStoryCardTableViewCell *)cell {
+	
+	UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Button from back view"
+														 message:@"You tapped the downvote"
+														delegate:nil cancelButtonTitle:@"Okay..."
+											   otherButtonTitles:nil];
+	[alertView show];
+	
+	[self hideVisibleBackView:YES];
+}
+
+- (void)cellProfileWasTapped:(UGStoryCardTableViewCell *)cell {
+	
+    UGUserProfileViewController* profile = [[UGUserProfileViewController alloc] init];
+
+    [profile setUsername: [[cell storyCard] author]];
+    [profile setUpvoteScore:[[[cell storyCard] upvotes] stringValue]];
+    [profile setDownvoteScore:[[[cell storyCard] downvotes] stringValue]];
+    
+    [UIView beginAnimations:@"animation" context:nil];
+	[self.navigationController pushViewController:profile animated:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+    [UIView commitAnimations];
+    
 	[self hideVisibleBackView:YES];
 }
 @end

@@ -27,6 +27,8 @@
 		609811741664788300F9FE0D /* UGStoryCardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 609811731664788300F9FE0D /* UGStoryCardManager.m */; };
 		60981177166478BF00F9FE0D /* UGLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60981176166478BF00F9FE0D /* UGLoginManager.m */; };
 		60AA01C41670FF9C00433575 /* TISwipeableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AA01C31670FF9C00433575 /* TISwipeableTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		60AA01CA1671232300433575 /* UGUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AA01C81671232300433575 /* UGUserProfileViewController.m */; };
+		60AA01CB1671232300433575 /* UGUserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60AA01C91671232300433575 /* UGUserProfileViewController.xib */; };
 		CB9E864264EC4ED7A0A11A31 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B8FD16BC45429DBB4EB8FD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,9 @@
 		60981176166478BF00F9FE0D /* UGLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLoginManager.m; sourceTree = "<group>"; };
 		60AA01C21670FF9C00433575 /* TISwipeableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISwipeableTableView.h; sourceTree = "<group>"; };
 		60AA01C31670FF9C00433575 /* TISwipeableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TISwipeableTableView.m; sourceTree = "<group>"; };
+		60AA01C71671232300433575 /* UGUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGUserProfileViewController.h; sourceTree = "<group>"; };
+		60AA01C81671232300433575 /* UGUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGUserProfileViewController.m; sourceTree = "<group>"; };
+		60AA01C91671232300433575 /* UGUserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGUserProfileViewController.xib; sourceTree = "<group>"; };
 		969EF1C7D871492BBE7A1A27 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		F3B8FD16BC45429DBB4EB8FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,6 +91,9 @@
 		60981127166470C800F9FE0D = {
 			isa = PBXGroup;
 			children = (
+				60AA01C71671232300433575 /* UGUserProfileViewController.h */,
+				60AA01C81671232300433575 /* UGUserProfileViewController.m */,
+				60AA01C91671232300433575 /* UGUserProfileViewController.xib */,
 				6098113C166470C800F9FE0D /* storytime_ios */,
 				609811711664782100F9FE0D /* story_card */,
 				6098116D1664778400F9FE0D /* login */,
@@ -241,6 +249,7 @@
 				6098114D166470C800F9FE0D /* Default-568h@2x.png in Resources */,
 				60981162166471EF00F9FE0D /* UGLoginViewController.xib in Resources */,
 				6098116C166475C000F9FE0D /* UGCreateAccountController.xib in Resources */,
+				60AA01CB1671232300433575 /* UGUserProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +288,7 @@
 				6091B280166561A00064FA22 /* UGStoryCardItem.m in Sources */,
 				6091B283166565770064FA22 /* UGStoryTimeRestClient.m in Sources */,
 				60AA01C41670FF9C00433575 /* TISwipeableTableView.m in Sources */,
+				60AA01CA1671232300433575 /* UGUserProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

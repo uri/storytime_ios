@@ -75,6 +75,8 @@
 		[_delegate cellUpvoteWasTapped:self];
 	} else 	if ([btnText isEqualToString:@"D"] && [_delegate respondsToSelector:@selector(cellDownvoteWasTapped:)]){
         [_delegate cellDownvoteWasTapped:self];
+    } else 	if ([btnText isEqualToString:@"Profile"] && [_delegate respondsToSelector:@selector(cellDownvoteWasTapped:)]){
+        [_delegate cellProfileWasTapped:self];
     }
 }
 
