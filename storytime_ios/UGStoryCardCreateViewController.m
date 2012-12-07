@@ -8,6 +8,7 @@
 
 #import "UGStoryCardCreateViewController.h"
 #import "UGStoryTimeRestClient.h"
+#import "UGStoryCardViewController.h"
 
 @interface UGStoryCardCreateViewController ()
 
