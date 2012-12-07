@@ -13,6 +13,7 @@
 #import "UGStoryCardTableViewCell.h"
 #import "UGUserProfileViewController.h"
 #import "UGStoryTimeRestClient.h"
+#import "UGStoryCardCreateViewController.h"
 
 @interface UGStoryCardViewController ()
 
@@ -29,6 +30,17 @@
         [cardManager setViewControllerDelegate: self];
         [cardManager setRootCard:rCard];
         [cardManager requestCards];
+        
+        UIButton *replyBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        if (rCard)
+            [replyBtn setTitle:@"Reply" forState:UIControlStateNormal];
+        else
+            [replyBtn setTitle:@"Post" forState:UIControlStateNormal];
+        
+        [replyBtn setFrame:CGRectMake(0, 0, 30, 30)];
+        [replyBtn addTarget:self action:@selector(replyPressed) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.titleView = replyBtn;
     }
     return self;
 
@@ -48,12 +60,29 @@
     [cardManager requestCards];
 }
 
+-(void) replyPressed
+{
+    UGStoryCardCreateViewController* createStoryCardVC = [[UGStoryCardCreateViewController alloc] init];
+    
+    if ([cardManager rootCard]) {
+        [createStoryCardVC setOriginalText: [[cardManager rootCard] content]];
+        [createStoryCardVC setParentID: [[[cardManager rootCard] cardID] stringValue]];
+    }
+    
+    [UIView beginAnimations:@"Animations" context:nil];
+    [self.navigationController pushViewController:createStoryCardVC animated:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[createStoryCardVC view] cache:NO];
+    [UIView commitAnimations];
+
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadRequest)];
+    [self reloadRequest];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
